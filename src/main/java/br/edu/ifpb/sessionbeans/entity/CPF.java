@@ -19,6 +19,7 @@ public class CPF implements Serializable{
     }
 
     public void setCpf(String cpf) {
+        if(cpf == null) cpf = "";
         this.numericCpf = cpf.replaceAll("\\D+","");;
     }
     
@@ -27,6 +28,7 @@ public class CPF implements Serializable{
     }
     
     public String getFormatedCpf(){
+        if(!isValid()) return "";
         try {
             MaskFormatter mf = new MaskFormatter("###.###.###-##");  
             mf.setValueContainsLiteralCharacters(false); 
