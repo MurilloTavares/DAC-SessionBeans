@@ -2,6 +2,7 @@ package br.edu.ifpb.sessionbeans.dao;
 
 import br.edu.ifpb.sessionbeans.entity.*;
 import java.util.List;
+import java.util.Random;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -45,6 +46,30 @@ public class BandaDAO {
 
     public void atualizar(Banda banda) {
         em.merge(banda);
+    }
+    
+    public List<Banda> listarDestaques(int results){
+        long count = quantBandas();
+        Random random = new Random();
+        int posic = random.nextInt((int)count);
+        
+        CriteriaQuery<Banda> queryBuilder = builder.createQuery(Banda.class);
+        queryBuilder.select(queryBuilder.from(Banda.class));
+        
+        TypedQuery<Banda> query = em.createQuery(queryBuilder);
+        query.setFirstResult(posic);
+        query.setMaxResults(results);
+        return query.getResultList();
+    }
+    
+    public Long quantBandas(){
+        CriteriaQuery<Long> queryBuilder = builder.createQuery(Long.class);
+        queryBuilder.select(
+                builder.count(
+                        queryBuilder.from(Banda.class)
+                )
+        );
+        return em.createQuery(queryBuilder).getSingleResult();
     }
     
 }

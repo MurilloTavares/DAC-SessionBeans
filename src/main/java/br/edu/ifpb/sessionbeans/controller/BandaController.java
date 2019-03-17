@@ -30,4 +30,8 @@ public class BandaController {
         bDao.atualizar(banda);
     }
     
+    public List<Banda> listarDestaques(){
+        return bDao.listarDestaques(3);
+    }
+    
 }

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -10,7 +11,36 @@
         
         <ui:include src="header.xhtml" />
         
-        
+        <h:form>
+            <h:outputText value="PLAYLIST"/>
+            <h:dataTable value="#{playlistController.listar()}" var="banda">
+                <h:column>
+                    <h:commandButton value="X"
+                                     action="#{playlistController.removerBanda(banda)}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nome</f:facet>
+                    #{banda.nomeFantasia}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Origem</f:facet>
+                    #{banda.localOrigem}
+                </h:column>
+            </h:dataTable>
+            
+            <hr/>
+            <h:outputText value="BANDAS EM DESTAQUE" />
+            <ui:repeat value="#{bandaController.listarDestaques()}" var="destaque">
+                <h:panelGrid columns="1">
+                    <h:outputText value="Nome: #{destaque.nomeFantasia}" />
+                    <h:outputText value="Origem: #{destaque.localOrigem}" />
+                    <h:outputText value="Integrantes: #{destaque.integrantes.size()} integrantes" />
+                    <h:outputText value="Albuns: #{destaque.albums.size()} albuns"/>
+                    <h:commandButton value="Adicionar a playlist"
+                                     action="#{playlistController.addBanda(destaque)}"/>
+                </h:panelGrid>
+            </ui:repeat>
+        </h:form>
     </h:body>
 </html>
 
