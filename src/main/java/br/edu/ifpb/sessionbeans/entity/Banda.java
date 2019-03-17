@@ -82,7 +82,6 @@ public class Banda implements Serializable{
         hash = 83 * hash + Objects.hashCode(this.localOrigem);
         hash = 83 * hash + Objects.hashCode(this.nomeFantasia);
         hash = 83 * hash + Objects.hashCode(this.integrantes);
-        hash = 83 * hash + Objects.hashCode(this.albums);
         return hash;
     }
 

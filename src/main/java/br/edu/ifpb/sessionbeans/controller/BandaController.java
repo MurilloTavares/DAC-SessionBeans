@@ -26,4 +26,8 @@ public class BandaController {
         bDao.excluir(banda);
     }
     
+    public void atualizar(Banda banda){
+        bDao.atualizar(banda);
+    }
+    
 }

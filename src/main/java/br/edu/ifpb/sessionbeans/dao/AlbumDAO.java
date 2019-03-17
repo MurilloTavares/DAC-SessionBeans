@@ -15,4 +15,15 @@ public class AlbumDAO {
         em.persist(album);
     }
     
+    public void remover(Album album){
+        album = em.find(Album.class, album.getId());
+        em.remove(album);
+    }
+    
+    public void remover(int id){
+        Album album = em.find(Album.class, id);
+        em.remove(album);
+    }
+
+    
 }

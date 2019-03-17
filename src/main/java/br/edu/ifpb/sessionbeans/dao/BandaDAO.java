@@ -42,5 +42,9 @@ public class BandaDAO {
     public Banda buscar(int id){
         return em.find(Banda.class, id);
     }
+
+    public void atualizar(Banda banda) {
+        em.merge(banda);
+    }
     
 }
