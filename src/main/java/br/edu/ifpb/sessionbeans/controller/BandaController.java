@@ -1,54 +1,29 @@
 package br.edu.ifpb.sessionbeans.controller;
 
 import br.edu.ifpb.sessionbeans.dao.BandaDAO;
-import br.edu.ifpb.sessionbeans.entity.Integrante;
 import br.edu.ifpb.sessionbeans.entity.Banda;
-import java.io.Serializable;
-import javax.annotation.PostConstruct;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 @ManagedBean
-@SessionScoped
-public class BandaController implements Serializable{
+@RequestScoped
+public class BandaController {
     
     @EJB
     private BandaDAO bDao;
     
-    private Banda bandaForm;
-    private Integrante integranteForm;
-    
-    @PostConstruct
-    public void init() {
-        bandaForm = new Banda();
-        integranteForm = new Integrante();
+    public void salvar(Banda banda){
+        bDao.salvar(banda);
     }
     
-    public void addIntegranteNaBanda(){
-        bandaForm.getIntegrantes().add(integranteForm);
-        integranteForm = new Integrante();
+    public List<Banda> listar(){
+        return bDao.listar();
     }
     
-    public void salvarBanda(){
-        bDao.salvar(bandaForm);
-        bandaForm = new Banda();
-    }
-
-    public Banda getBandaForm() {
-        return bandaForm;
-    }
-
-    public void setBandaForm(Banda bandaForm) {
-        this.bandaForm = bandaForm;
-    }
-
-    public Integrante getIntegranteForm() {
-        return integranteForm;
-    }
-
-    public void setIntegranteForm(Integrante integranteForm) {
-        this.integranteForm = integranteForm;
+    public void excluir(Banda banda){
+        bDao.excluir(banda);
     }
     
 }

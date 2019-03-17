@@ -10,18 +10,19 @@
         <h:form>
             
             <h:outputText value="Nova Banda" />
-            <h:commandButton value="Salvar Banda"  action="#{bandaController.salvarBanda()}" />
+            <h:commandButton value="Salvar Banda" 
+                             action="#{novaBanda.salvar()}" />
             <h:panelGrid columns="2">
                 <h:outputLabel value="Nome Fantasia" />
-                <h:inputText value="#{bandaController.bandaForm.nomeFantasia}" />
+                <h:inputText value="#{novaBanda.bandaForm.nomeFantasia}" />
 
                 <h:outputLabel value="Local Origem" />
-                <h:inputText value="#{bandaController.bandaForm.localOrigem}" />
+                <h:inputText value="#{novaBanda.bandaForm.localOrigem}" />
             </h:panelGrid>
             <br/>
             <h:outputText value="Integrantes" />
             <h:dataTable var="integrante" 
-                         value="#{bandaController.bandaForm.integrantes}" >
+                         value="#{novaBanda.bandaForm.integrantes}" >
                 <h:column>
                     <f:facet name="header"> Nome </f:facet>
                     <h:outputText value="#{integrante.nome}" />
@@ -36,14 +37,14 @@
             <h:outputText value="Add Integrante Na Banda" />
             <h:panelGrid columns="2">
                 <h:outputLabel value="Nome" />
-                <h:inputText value="#{bandaController.integranteForm.nome}" />
+                <h:inputText value="#{novaBanda.integranteForm.nome}" />
 
                 <h:outputLabel value="CPF" />
-                <h:inputText value="#{bandaController.integranteForm.cpf}"
+                <h:inputText value="#{novaBanda.integranteForm.cpf}"
                              converter="converter.CPF"/>
             </h:panelGrid>
             <h:commandButton value="Adicionar a Banda"
-                             action="#{bandaController.addIntegranteNaBanda()}" />
+                             action="#{novaBanda.addIntegranteNaBanda()}" />
             
         </h:form>
     </h:body>
