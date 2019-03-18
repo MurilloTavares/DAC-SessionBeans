@@ -36,6 +36,11 @@ public class GerenciarBanda implements Serializable{
         banda.getAlbums().add(album);
         bDao.atualizar(banda);
     }
+    
+    public void removerAlbum(Album album){
+        banda.getAlbums().remove(album);
+        bDao.atualizar(banda);
+    }
 
     public Banda getBanda() {
         return banda;
