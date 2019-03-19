@@ -19,6 +19,10 @@
                                      action="#{playlistController.removerBanda(banda)}" />
                 </h:column>
                 <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    #{banda.id}
+                </h:column>
+                <h:column>
                     <f:facet name="header">Nome</f:facet>
                     #{banda.nomeFantasia}
                 </h:column>
@@ -30,8 +34,9 @@
             
             <hr/>
             <h:outputText value="BANDAS EM DESTAQUE" />
-            <ui:repeat value="#{bandaController.listarDestaques()}" var="destaque">
+            <ui:repeat value="#{destaquesController.destaques}" var="destaque">
                 <h:panelGrid columns="1">
+                    <h:outputText value="ID: #{destaque.id}" />
                     <h:outputText value="Nome: #{destaque.nomeFantasia}" />
                     <h:outputText value="Origem: #{destaque.localOrigem}" />
                     <h:outputText value="Integrantes: #{destaque.integrantes.size()} integrantes" />
@@ -40,6 +45,7 @@
                                      action="#{playlistController.addBanda(destaque)}"/>
                 </h:panelGrid>
             </ui:repeat>
+            
         </h:form>
     </h:body>
 </html>

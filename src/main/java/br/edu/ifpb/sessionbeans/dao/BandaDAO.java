@@ -1,6 +1,7 @@
 package br.edu.ifpb.sessionbeans.dao;
 
 import br.edu.ifpb.sessionbeans.entity.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.annotation.PostConstruct;
@@ -49,17 +50,27 @@ public class BandaDAO {
     }
     
     public List<Banda> listarDestaques(int results){
-        long count = quantBandas();
-        Random random = new Random();
-        int posic = random.nextInt((int)count);
+//        long count = quantBandas();
+//        Random random = new Random();
+//        int posic = random.nextInt((int)count);
         
         CriteriaQuery<Banda> queryBuilder = builder.createQuery(Banda.class);
         queryBuilder.select(queryBuilder.from(Banda.class));
         
         TypedQuery<Banda> query = em.createQuery(queryBuilder);
-        query.setFirstResult(posic);
-        query.setMaxResults(results);
-        return query.getResultList();
+        // query.setFirstResult(posic);
+//        query.setMaxResults(results);
+
+        List<Banda> remaingResult = query.getResultList();
+        List<Banda> randomList = new ArrayList<>();
+        Random random = new Random();
+        for(int i = 0; i < results; i++){
+            int index = random.nextInt(remaingResult.size());
+            Banda banda = remaingResult.remove(index);
+            randomList.add(banda);
+        }
+        return randomList;
+//        return query.getResultList();
     }
     
     public Long quantBandas(){

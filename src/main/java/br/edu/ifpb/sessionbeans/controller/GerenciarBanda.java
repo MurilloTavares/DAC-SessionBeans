@@ -1,6 +1,5 @@
 package br.edu.ifpb.sessionbeans.controller;
 
-import br.edu.ifpb.sessionbeans.dao.AlbumDAO;
 import br.edu.ifpb.sessionbeans.dao.BandaDAO;
 import br.edu.ifpb.sessionbeans.entity.Banda;
 import javax.annotation.PostConstruct;
@@ -17,8 +16,6 @@ public class GerenciarBanda implements Serializable{
     
     @EJB
     private BandaDAO bDao;
-    @EJB
-    private AlbumDAO aDao;
     
     private Banda banda;
     
@@ -49,5 +46,5 @@ public class GerenciarBanda implements Serializable{
     public void setBanda(Banda banda) {
         this.banda = banda;
     }
-        
+
 }
