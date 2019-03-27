@@ -61,12 +61,19 @@ public class BandaDAO {
         // query.setFirstResult(posic);
 //        query.setMaxResults(results);
 
-        List<Banda> remaingResult = query.getResultList();
+        List<Banda> result = query.getResultList();
+        
+        // caso o numero de results seja maior que a quantidade de bandas
+        // retorna todas as bandas
+        if(result.size() <= results){
+            return result;
+        }
+        
         List<Banda> randomList = new ArrayList<>();
         Random random = new Random();
         for(int i = 0; i < results; i++){
-            int index = random.nextInt(remaingResult.size());
-            Banda banda = remaingResult.remove(index);
+            int index = random.nextInt(result.size());
+            Banda banda = result.remove(index);
             randomList.add(banda);
         }
         return randomList;

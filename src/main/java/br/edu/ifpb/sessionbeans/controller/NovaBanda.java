@@ -35,6 +35,10 @@ public class NovaBanda implements Serializable{
         integranteForm = new Integrante();
     }
     
+    public void removerIntegrante(Integrante i){
+        bandaForm.getIntegrantes().remove(i);
+    }
+    
     public Banda getBandaForm() {
         return bandaForm;
     }

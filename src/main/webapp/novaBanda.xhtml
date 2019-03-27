@@ -28,6 +28,10 @@
             <h:dataTable var="integrante" 
                          value="#{novaBanda.bandaForm.integrantes}" >
                 <h:column>
+                    <h:commandButton value="X"
+                                     action="#{novaBanda.removerIntegrante(integrante)}" />
+                </h:column>
+                <h:column>
                     <f:facet name="header"> Nome </f:facet>
                     <h:outputText value="#{integrante.nome}" />
                 </h:column>
